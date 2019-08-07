@@ -16,7 +16,7 @@ RUN git clone $GIT_REPO .
 RUN npm install
 RUN npm run $BUILD_SCRIPT
 
-FROM slapper/alpline-node-chromium as tester
+FROM slapers/alpline-node-chromium as tester
 ENV BUILDER_SRC_DIR /usr/src
 ENV SRC_DIR /usr/src
 ENV TEST_SCRIPT test:prod
