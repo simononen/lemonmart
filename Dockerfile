@@ -30,5 +30,5 @@ CMD 'npm run $TEST_SCRIPT'
 
 FROM dulucs/minimal-nginx-web-server:1.13.8-alpline
 ENV BUILDER_SRC_DIR /usr/src
-COPY --form=builder $BUILDER_SRC_DIR/dist /var/www
+COPY --from=builder $BUILDER_SRC_DIR/dist /var/www
 CMD 'nginx'
