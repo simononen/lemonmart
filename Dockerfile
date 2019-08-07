@@ -16,17 +16,14 @@ RUN git clone $GIT_REPO .
 RUN npm install
 RUN npm run $BUILD_SCRIPT
 
-#FROM slapers/alpine-node-chromium as tester
+FROM slapers/alpine-node-chromium as tester
 ENV BUILDER_SRC_DIR /usr/src
-#ENV SRC_DIR /usr/src
-#ENV TEST_SCRIPT test:prod
-
-#RUN mkdir -p $SRC_DIR
-#WORKDIR $SRC_DIR
-
+ENV SRC_DIR /usr/src
+ENV TEST_SCRIPT test:prod
+RUN mkdir -p $SRC_DIR
+WORKDIR $SRC_DIR
 COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
-
-# CMD 'npm run $TEST_SCRIPT'
+CMD 'npm run $TEST_SCRIPT'
 
 FROM dulucs/minimal-nginx-web-server:1.13.8-alpline
 ENV BUILDER_SRC_DIR /usr/src
